@@ -1,0 +1,102 @@
+<!-- patientDashboard.html -->
+
+<!-- 
+Step-by-Step Explanation of the Patient Dashboard Page (with Modal Support)
+This HTML file defines the structure of the Patient Dashboard where users can search for doctors, apply filters, and view dynamic content such as modals for detailed interactions.
+
+1. Declare the Document Type
+
+   * Use `<!DOCTYPE html>` to ensure modern HTML5 rendering.
+
+2. Begin the HTML Document with Language Attribute
+
+   * Use `<html lang="en">` to define English as the primary language.
+
+3. Head Section – Metadata and Linked Assets
+
+   * Open the `<head>` section to include meta tags, styles, and scripts.
+
+4. Set Character Encoding
+
+   * Use `<meta charset="UTF-8">` to ensure proper character rendering across browsers.
+
+5. Set the Favicon
+
+   * Use:
+     ```html
+     <link rel="icon" type="image/svg+xml" href="../assets/images/logo/logo.png" />
+     ```
+     to display a logo in the browser tab.
+
+6. Set the Page Title
+
+   * Title the tab as `"PatientDashboard"` to reflect the current view.
+
+7. Link CSS Stylesheets
+
+   * Load relevant CSS files to style the dashboard:
+     - `adminDashboard.css` – reused admin layout styles.
+     - `style.css` – global shared styles.
+     - `patientDashboard.css` – page-specific custom styles.
+
+8. Include JavaScript Files (Deferred)
+
+   * Load reusable and component-based scripts using `defer`:
+     - `render.js` – populates shared HTML parts.
+     - `util.js` – utility/helper functions.
+     - `header.js` and `footer.js` – dynamic content injection.
+     - `modals.js` – logic for opening/closing modals.
+     - `patientDashboard.js` – core logic for this dashboard (appended at end of `<body>` for load priority).
+
+9. Begin the Body with Dynamic Initialization
+
+   * Use `onload="renderContent()"` in `<body>` to trigger dynamic content rendering.
+
+10. Define Main Layout Containers
+
+   * Use `<div class="container">` and nested `<div class="wrapper">` to organize layout content consistently.
+
+11. Insert Dynamic Header
+
+   * Include `<div id="header"></div>` to be populated via JavaScript.
+
+12. Define Main Content Section
+
+   * Use `<main class="main-content">` to wrap the searchable/filterable content section.
+
+13. Add Search Bar
+
+   * Insert a live-search input to filter available doctor content:
+     ```html
+     <input type="text" id="searchBar" class="searchBar" placeholder="Search Bar for custom output" />
+     ```
+
+14. Add Filter Dropdowns
+
+   * Two `<select>` elements allow filtering by:
+     - Time: AM or PM
+     - Specialty: a list of medical specialties such as Cardiologist, Neurologist, etc.
+
+15. Add Dynamic Content Area
+
+   * Use `<div id="content"></div>` to load and display doctor cards or results dynamically.
+
+16. Insert Dynamic Footer
+
+   * Use `<div id="footer"></div>` for JavaScript-rendered footer content.
+
+17. Add Modal Structure
+
+   * Include a hidden modal that can display additional information or forms:
+     - `<div id="modal" class="modal">` – main modal container.
+     - `<span class="close" id="closeModal">&times;</span>` – close button.
+     - `<div id="modal-body"></div>` – dynamic content container inside the modal.
+
+18. Append Page-Specific JavaScript Module
+
+   * Load the `patientDashboard.js` module at the end of the `<body>` for execution after HTML parsing.
+
+19. Close All Tags
+
+   * Properly close all opened tags (`body`, `html`) for a valid and functional document structure.
+ -->

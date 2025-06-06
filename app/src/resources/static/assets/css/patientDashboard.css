@@ -1,0 +1,96 @@
+/* This is the style sheet for the patientDashboard.html */
+  /* 
+1.)  .card-actions:
+
+      Purpose: Styles the container for card-related actions like buttons.
+
+      Properties:
+          background-color: #244557; → Sets a dark blue-gray shade as the background.
+
+          padding: 10px; → Adds spacing inside the container.
+
+          text-align: center; → Aligns content centrally within the card.
+
+      On Hover (.card-actions:hover):
+
+          background-color: #1c3745; → Changes to an even darker shade for interactivity feedback.
+
+2.)  .ripple-overlay
+
+     Purpose: Creates an expanding ripple effect for interactive clicks.
+
+     Properties:
+          position: fixed; → Stays in place relative to the viewport.
+          width: 20px; height: 20px; → Starts as a small circle.
+          background-color: #1c3745; → Gives the ripple its dark navy color.
+          border-radius: 50%; → Makes the ripple a perfect circle.
+          z-index: 9999; → Ensures it appears above nearly all other elements.
+          transform: translate(-50%, -50%) scale(0); → Centers and shrinks the ripple initially.
+          transition: transform 1s ease-out, opacity 1s ease; → Smooth animation on trigger.
+
+     When .active is added:
+          transform: translate(-50%, -50%) scale(150); → Dramatically expands the ripple.
+          opacity: 1; → Makes it fully visible.
+
+3.)  .modalApp (Modal Container)
+
+      Purpose: A bottom-slide modal component.
+
+      Properties:
+
+          position: fixed; → Positioned relative to the viewport.
+          bottom: -100%; → Initially hidden below the screen.
+          left: 50%; + transform: translateX(-50%); → Horizontally centered.
+          width: 50%; → Takes up half the screen width.
+          background: #fff; → White modal background.
+          padding: 20px; → Internal spacing.
+          z-index: 10000; → Appears above even the ripple.
+          transition: bottom 1.5s ease-in; → Smooth slide-in from the bottom.
+          box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3); → Adds a subtle top shadow.
+          border-radius: 10px 10px 0 0; → Rounds only the top corners.
+          text-align: center; → Centers text content inside the modal.
+
+      When .active is added:
+
+          bottom: 0; → Slides the modal into view from below.
+
+4.)  .modalApp h2
+
+      Purpose: Headline in modal.
+
+      Properties:
+
+          margin-top: 20px; → Adds spacing above the heading.
+
+5.)  .modalApp input and .modalApp select
+
+      Purpose: Form inputs within the modal.
+
+6.)  Common Properties:
+
+          display: block; → Full-width elements.
+          margin: 10px auto; → Centered with vertical spacing.
+          padding: 10px; → Comfortable clickable area.
+          width: 90%; → Takes up most of modal width.
+          margin-bottom: 40px; → Adds breathing room after each input.
+
+7.)   .confirm-booking (Confirm Button)
+
+      Purpose: Triggers booking confirmation.
+
+      Properties:
+
+          padding: 10px 20px; → Decent clickable area.
+          background: #1c3745; → Navy blue background.
+          color: #fff; → White text for contrast.
+          border: none; → Clean button without borders.
+          cursor: pointer; → Cursor turns into pointer on hover.
+
+      On Hover:
+
+          filter: brightness(1.2); → Slight glow effect.
+          background-color: #1c3745; → Keeps the same color (may seem redundant but reinforces color consistency)..
+
+ */
+
+ 

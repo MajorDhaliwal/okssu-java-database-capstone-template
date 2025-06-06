@@ -1,0 +1,89 @@
+<!-- loggedPatientDashboard.html -->
+
+<!-- 
+Step-by-Step Explanation of `loggedPatientDashboard.html`
+This file builds the Patient Dashboard interface where a logged-in patient can browse doctors, filter by time or specialty, and view available appointment slots.
+
+1. Declare the Document Type
+
+   * Include `<!DOCTYPE html>` to specify HTML5 for consistent rendering across all modern browsers.
+
+2. Begin HTML Document with Language Attribute
+
+   * Use `<html lang="en">` to indicate English as the primary language.
+
+3. Head Section – Metadata and Linked Assets
+
+   * Start the `<head>` section where metadata, stylesheets, and scripts are loaded.
+
+4. Set Character Encoding
+
+   * Define UTF-8 character encoding using `<meta charset="UTF-8">`.
+
+5. Set the Favicon
+
+   * Link a favicon for the browser tab using:
+     ```html
+     <link rel="icon" type="image/svg+xml" href="../assets/images/logo/logo.png" />
+     ```
+
+6. Set the Page Title
+
+   * Set the page title to `"LoggedPatientDashboard"` to reflect the logged-in patient view.
+
+7. Link CSS Stylesheets
+
+   * Add three CSS files for styling:
+     - `adminDashboard.css` – for shared layout (for reusing structure)
+     - `style.css` – general styling used across multiple pages
+     - `patientDashboard.css` – patient-specific styles
+
+8. Include JavaScript Files (Deferred)
+
+   * Load all scripts using `defer` so they don’t block HTML parsing:
+     - `render.js` – handles rendering shared or dynamic content
+     - `util.js` – contains utility/helper functions
+     - `header.js` and `footer.js` – inject header/footer dynamically
+     - `loggedPatient.js` – contains logic specific to patient dashboard (loaded as a module)
+
+9. Close Head and Begin the Body
+
+    * Use `<body onload="renderContent()">` to ensure JavaScript runs after the page loads.
+
+10. Add Main Container and Wrapper
+
+    * Use `<div class="container">` as the outermost layout element, and nest a `<div class="wrapper">` for better organization and styling.
+
+11. Insert Header Placeholder
+
+    * Add `<div id="header"></div>` for injecting the dynamic header via JavaScript.
+
+12. Define the Main Section
+
+    * Use `<main class="main-content">` to wrap the primary dashboard area for patient interactions.
+
+13. Add a Search Bar
+
+    * Insert an input field for live searching or filtering doctors:
+      ```html
+      <input type="text" id="searchBar" class="searchBar" placeholder="Search Bar for custom output" />
+      ```
+
+14. Add Filter Dropdowns
+
+    * Add two dropdown filters:
+      - `#filterTime` – for selecting time slots (AM/PM)
+      - `#filterSpecialty` – for selecting doctor specialties (Cardiologist, Dermatologist, etc.)
+
+15. Add Dynamic Content Area
+
+    * Use `<div id="content"></div>` to dynamically display doctor cards or appointment options based on filters/search.
+
+16. Insert Footer Placeholder
+
+    * Add `<div id="footer"></div>` for rendering the dynamic footer.
+
+17. Close All Tags
+
+    * Properly close all opened tags (`main`, `div`, `body`, and `html`) to maintain valid HTML structure.
+ -->
