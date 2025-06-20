@@ -1,1 +1,1 @@
-# coding-project-template
+# Smart Clinic Managemenrt System
