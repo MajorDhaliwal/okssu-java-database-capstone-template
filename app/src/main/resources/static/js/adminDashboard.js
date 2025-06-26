@@ -70,3 +70,94 @@
 
     If saving fails, show an error message
 */
+
+// Import Required Modules
+import { openModal } from '../components/modals.js';
+import { getDoctors, filterDoctors, saveDoctor } from './services/doctorServices.js';
+import { createDoctorCard } from './components/doctorCard.js';
+
+// Load all doctors when the page is loaded
+window.addEventListener('DOMContentLoaded', loadDoctorCards);
+
+// Bind event to "Add Doctor" button
+document.getElementById('addDocBtn')?.addEventListener('click', () => {
+  openModal('addDoctor');
+});
+
+// Bind search and filter events
+document.getElementById('searchBar')?.addEventListener('input', filterDoctorsOnChange);
+document.getElementById('filterTime')?.addEventListener('change', filterDoctorsOnChange);
+document.getElementById('filterSpecialty')?.addEventListener('change', filterDoctorsOnChange);
+
+// Load and render all doctors
+async function loadDoctorCards() {
+  const contentDiv = document.getElementById('content');
+  contentDiv.innerHTML = '';
+
+  const doctors = await getDoctors();
+  renderDoctorCards(doctors);
+}
+
+// Render list of doctor cards
+function renderDoctorCards(doctors) {
+  const contentDiv = document.getElementById('content');
+  contentDiv.innerHTML = '';
+
+  if (doctors.length === 0) {
+    contentDiv.innerHTML = '<p>No doctors found.</p>';
+    return;
+  }
+
+  doctors.forEach(doctor => {
+    const card = createDoctorCard(doctor);
+    contentDiv.appendChild(card);
+  });
+}
+
+// Filter doctors based on search and dropdowns
+async function filterDoctorsOnChange() {
+  const name = document.getElementById('searchBar')?.value || '';
+  const time = document.getElementById('filterTime')?.value || '';
+  const specialty = document.getElementById('filterSpecialty')?.value || '';
+
+  const filtered = await filterDoctors(name, time, specialty);
+  renderDoctorCards(filtered);
+}
+
+// Handle Add Doctor form submission
+window.adminAddDoctor = async function () {
+  const name = document.getElementById('docName')?.value;
+  const specialty = document.getElementById('docSpecialty')?.value;
+  const email = document.getElementById('docEmail')?.value;
+  const password = document.getElementById('docPassword')?.value;
+  const mobile = document.getElementById('docMobile')?.value;
+  const time = document.getElementById('docTime')?.value;
+
+  // Optional: collect checkbox availability if applicable
+  // const availability = [...document.querySelectorAll('.availabilityCheckbox:checked')].map(cb => cb.value);
+
+  const token = localStorage.getItem('token');
+  if (!token) {
+    alert('Admin not authenticated. Please log in.');
+    return;
+  }
+
+  const doctor = {
+    name,
+    specialty,
+    email,
+    password,
+    mobile,
+    time,
+    // availability, // Uncomment if collecting from checkboxes
+  };
+
+  const result = await saveDoctor(doctor, token);
+  if (result.success) {
+    alert('Doctor added successfully!');
+    document.getElementById('addDoctorModal').style.display = 'none';
+    loadDoctorCards();
+  } else {
+    alert(`Failed to add doctor: ${result.message}`);
+  }
+};

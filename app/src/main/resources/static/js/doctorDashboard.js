@@ -52,3 +52,67 @@
     - Call renderContent() (assumes it sets up the UI layout)
     - Call loadAppointments() to display today's appointments by default
 */
+
+// Import required modules
+import { getAllAppointments } from './services/appointmentRecordService.js';
+import { createPatientRow } from './components/patientRows.js';
+
+// Initialize global variables
+const patientTableBody = document.getElementById('patientTableBody');
+let selectedDate = new Date().toISOString().split('T')[0]; // today's date as YYYY-MM-DD
+const token = localStorage.getItem('token');
+let patientName = null;
+
+// Setup search bar functionality
+document.getElementById('searchBar')?.addEventListener('input', () => {
+  const searchValue = document.getElementById('searchBar').value.trim();
+  patientName = searchValue === '' ? 'null' : searchValue;
+  loadAppointments();
+});
+
+// Bind event listener to “Today’s Appointments” button
+document.getElementById('todayButton')?.addEventListener('click', () => {
+  selectedDate = new Date().toISOString().split('T')[0];
+  document.getElementById('datePicker').value = selectedDate;
+  loadAppointments();
+});
+
+// Bind event listener to date picker
+document.getElementById('datePicker')?.addEventListener('change', (e) => {
+  selectedDate = e.target.value;
+  loadAppointments();
+});
+
+// Load and render appointment data
+async function loadAppointments() {
+  try {
+    const appointments = await getAllAppointments(selectedDate, patientName, token);
+    patientTableBody.innerHTML = '';
+
+    if (!appointments || appointments.length === 0) {
+      patientTableBody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align:center;">No Appointments found for the selected date.</td>
+        </tr>`;
+      return;
+    }
+
+    appointments.forEach(appointment => {
+      const row = createPatientRow(appointment);
+      patientTableBody.appendChild(row);
+    });
+  } catch (error) {
+    console.error('Failed to load appointments:', error);
+    patientTableBody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align:center;">Error loading appointments. Please try again later.</td>
+      </tr>`;
+  }
+}
+
+// Initial render on page load
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('datePicker').value = selectedDate;
+  loadAppointments();
+});
+
